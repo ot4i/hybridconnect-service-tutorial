@@ -43,7 +43,7 @@
 	</div>
 	<div class="row">
 	  <div class="small-9 medium-9 large-9 columns">
-	    <h4 class="title">Hybrid Connect Registration and Monitoring <action><button class="small radius button" tabindex="0" id="stepsViewDetails" onclick="viewDetails()"> View Details</button> </action></h4>
+	    <h4 class="title">IBM Cloud Product Insights Registration and Monitoring <action><button class="small radius button" tabindex="0" id="stepsViewDetails" onclick="viewDetails()"> View Details</button> </action></h4>
 	  </div>
 	  <div class="small-3 medium-3 large-3 columns">
 		<a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm')" class="small right helplink">IBM Knowledge Center</a> 
@@ -52,7 +52,7 @@
 	<hr>
 	<div class="row">
 		<div class="small-10 medium-10 large-10 columns">
-		<h5> Learn how to register and monitor IBM Integration Bus usages with the Hybrid Connect service. </h5>
+		<h5> Learn how to register and monitor IBM Integration Bus usages with IBM Cloud Product Insights service. </h5>
 		</div>
 		<div class="small-2 medium-2 large-2 columns">
 			<button class="small radius button right" tabindex="0" id="backToGallery" onclick="backToGallery()"> Back To Gallery
@@ -85,7 +85,7 @@
 								<p> When you click Import, the <b>PrimeNumbers</b> application will be created in you workspace. </p>
 								
 							
-								<p> <b>PrimNumbers</b> uses the Compute node to look for all the prime numbers between 0 and 100000. This will be use as a way to create some data for the Hybrid Connect service dashboard to show. </p>
+								<p> <b>PrimNumbers</b> uses the Compute node to look for all the prime numbers between 0 and 100000. This will be use as a way to create some data for the Product Insights service dashboard to show. </p>
 								
 							
 						</div>
@@ -105,16 +105,16 @@
 					<div class="small-12 medium-12 large-12 columns">
 					
 						<div class="row content-details">
-						  	<h4>Getting an API key</h4>
+						  	<h4>Getting an API host and API key</h4>
 						    
 						    
-								<p> Before you can register your integration server with the Hybrid Connect service you will need to have an API key for you Hybrid Connect service. </p>
+								<p> Before you can register your integration server with the Product Insights service you will need to have an API host and API key for you Product Insights service. </p>
 								
 							
 								<p> If you already have one then you can move on to the <b>Run</b> section. </p>
 								
 							
-								<p> You can follow the instruction in <b>Configuring the IBM Hybrid Connect service</b> of the IBM Knowledge Center to get an API key. </p>
+								<p> You can follow the instruction in <b>Configuring the IBM Cloud Product Insights service</b> of the IBM Knowledge Center to get the API host and API key. </p>
 								
 							
 						</div>
@@ -130,38 +130,42 @@
 					      	<h4>Follow these steps to complete the tutorial</h4>
 					        
 						    
-								<p> Follow the instruction to register IBM Integration Bus with Hybrid Connect service. </p>
+								<p> Follow the instruction to register IBM Integration Bus with Product Insights service. </p>
 								
 								
 									
 									<ol>
 									
 									
-										<li> Open up an IBM Integration Console and use the command mqsichangebluemixreporting to register you integration server. Instruction can be find in <b>Configuring an integration server to send startup and usage information to IBM Hybrid Connect</b> of the IBM Knowledge Center.
+										<li> Open an IBM Integration Console and use the command mqsichangebluemixreporting to register you integration server. Instruction can be find in <b>Configuring an integration server to send startup and usage information to IBM Cloud Product Insights</b> of the IBM Knowledge Center.
 										
 										</li>
 									
-										<li> After registration, goto your web brower to logon to your IBM Bluemix account to open the Integrate services dashboard and select the Integrate Service you just created.
+										<li> After registration, goto your web browser to logon to your IBM Bluemix account to open the Integrate services dashboard and select the Integrate Service you just created.
 										
 										</li>
 									
-										<li> In the dashboard, select the newly registered integration server under IBM Integration Bus.
+										<li> In the dashboard, select the IBM Integration Bus.
 										
 										</li>
 									
-										<li> A panel will open displaying the product information under <b>Details</b>.
+										<li> If you registered in a group then your integration node with be a member of that group, expand the group.
 										
 										</li>
 									
-										<li> Clicking on <b>Usage</b> will change the panel to display a chart of the number of active CPUs for processing.
+										<li> Select your integration node in the left column and in the center column select your integration server. The right-hand column will show the usage data for the selected integration server.
 										
 										</li>
 									
-										<li> Clicking on <b>Active CPUs for process</b> and select <b>CPU used by process during this interval in mSec</b> to display the number of milli-seconds the registered integration server has spent on process.
+										<li> On the right-hand column, if <b>Usage</b> is not selected, select it.
 										
 										</li>
 									
-										<li> Go to your IBM Integration Toolkit and open the <b>PrimeNumbers.msgflow</b> and run it in the Flow Exerciser with an empty message.
+										<li> Under <b>Usage</b> the chart can select to show one of three measurements. <b>CPU time</b> shows the CPU usage time by the selected server (in milli-seconds). <b>Number of active CPUs</b> shows the number of active CPUs available for use. <b> Resident set size</b> shows the maximum recorded memory usage.
+										
+										</li>
+									
+										<li> Goto your IBM Integration Toolkit and open the <b>PrimeNumbers.msgflow</b> and run it in the Flow Exerciser with an empty message.
 										
 										</li>
 									
