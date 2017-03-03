@@ -32,8 +32,8 @@
   {
     "_common": 
     {
-      "name": "Hybrid Connect Registration and Monitoring",
-      "shortDescription": "Learn how to register and monitor IBM Integration Bus usages with the Hybrid Connect service.",
+      "name": "IBM Cloud Product Insights Registration and Monitoring",
+      "shortDescription": "Learn how to register and monitor IBM Integration Bus usages with IBM Cloud Product Insights service.",
       "durationText": "This tutorial takes approximately",
       "durationTime": "10 minutes",
       "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
@@ -51,7 +51,7 @@
       "topicList": 
       [
         {
-          "title": "Register with Hybrid Connect"
+          "title": "Register with Product Insights"
         }
       ],
       "outcomesName": "Learning outcomes",
@@ -59,7 +59,7 @@
       "outcomeList": 
       [
         {
-          "title": "Registration and monitoring of IBM Integration Bus with Hybrid Connect service."
+          "title": "Registration and monitoring of IBM Integration Bus with Product Insights service."
         }
       ],
       "summary": 
@@ -69,10 +69,10 @@
         "sections": 
         [
           {
-            "section": "This tutorial demonstrates how to register IBM Integration Bus to the Hybrid Connect service and using it to monitor its usage."
+            "section": "This tutorial demonstrates how to register IBM Integration Bus to the Product Insights service and using it to monitor its usage."
           },
           {
-            "section": "The Hybrid Connect service gathers product information and usage data from IBM Integration Bus and displays it in the Hybrid Connect dashboard. By accessing these data you can gain a greater insight into the workload of the product."
+            "section": "The Product Insights service gathers product information and usage data from IBM Integration Bus and displays it in the Product Insights dashboard. By accessing these data you can gain a greater insight into the workload of the product."
           }
         ]
       },
@@ -112,7 +112,7 @@
               "section": "When you click Import, the <b>PrimeNumbers</b> application will be created in you workspace."
             },
             {
-              "section": "<b>PrimNumbers</b> uses the Compute node to look for all the prime numbers between 0 and 100000. This will be use as a way to create some data for the Hybrid Connect service dashboard to show."
+              "section": "<b>PrimNumbers</b> uses the Compute node to look for all the prime numbers between 0 and 100000. This will be use as a way to create some data for the Product Insights service dashboard to show."
             }
           ]
         },
@@ -133,18 +133,18 @@
         "overview": 
         {
           "name": "Prepare",
-          "heading": "Getting an API key",
+          "heading": "Getting an API host and API key",
           "_prepareComment": "A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
           "sections": 
           [
             {
-              "section": "Before you can register your integration server with the Hybrid Connect service you will need to have an API key for you Hybrid Connect service."
+              "section": "Before you can register your integration server with the Product Insights service you will need to have an API host and API key for you Product Insights service."
             },
             {
               "section": "If you already have one then you can move on to the <b>Run</b> section."
             },
             {
-              "section": "You can follow the instruction in <b>Configuring the IBM Hybrid Connect service</b> of the IBM Knowledge Center to get an API key."
+              "section": "You can follow the instruction in <b>Configuring the IBM Cloud Product Insights service</b> of the IBM Knowledge Center to get the API host and API key."
             }
           ]
         }
@@ -159,32 +159,35 @@
           "sections": 
           [
             {
-              "section": "Follow the instruction to register IBM Integration Bus with Hybrid Connect service.",
+              "section": "Follow the instruction to register IBM Integration Bus with Product Insights service.",
               "steps": 
               {
                 "type": "ordered",
                 "details": 
                 [
                   {
-                    "details": "Open up an IBM Integration Console and use the command mqsichangebluemixreporting to register you integration server. Instruction can be find in <b>Configuring an integration server to send startup and usage information to IBM Hybrid Connect</b> of the IBM Knowledge Center."
+                    "details": "Open an IBM Integration Console and use the command mqsichangebluemixreporting to register you integration server. Instruction can be find in <b>Configuring an integration server to send startup and usage information to IBM Cloud Product Insights</b> of the IBM Knowledge Center."
                   },
                   {
-                    "details": "After registration, goto your web brower to logon to your IBM Bluemix account to open the Integrate services dashboard and select the Integrate Service you just created."
+                    "details": "After registration, goto your web browser to logon to your IBM Bluemix account to open the Integrate services dashboard and select the Integrate Service you just created."
                   },
                   {
-                    "details": "In the dashboard, select the newly registered integration server under IBM Integration Bus."
+                    "details": "In the dashboard, select the IBM Integration Bus."
                   },
                   {
-                    "details": "A panel will open displaying the product information under <b>Details</b>."
+                    "details": "If you registered in a group then your integration node with be a member of that group, expand the group."
                   },
                   {
-                    "details": "Clicking on <b>Usage</b> will change the panel to display a chart of the number of active CPUs for processing."
+                    "details": "Select your integration node in the left column and in the center column select your integration server. The right-hand column will show the usage data for the selected integration server."
                   },
                   {
-                    "details": "Clicking on <b>Active CPUs for process</b> and select <b>CPU used by process during this interval in mSec</b> to display the number of milli-seconds the registered integration server has spent on process."
+                    "details": "On the right-hand column, if <b>Usage</b> is not selected, select it."
                   },
                   {
-                    "details": "Go to your IBM Integration Toolkit and open the <b>PrimeNumbers.msgflow</b> and run it in the Flow Exerciser with an empty message."
+                    "details": "Under <b>Usage</b> the chart can select to show one of three measurements. <b>CPU time</b> shows the CPU usage time by the selected server (in milli-seconds). <b>Number of active CPUs</b> shows the number of active CPUs available for use. <b> Resident set size</b> shows the maximum recorded memory usage."
+                  },
+                  {
+                    "details": "Goto your IBM Integration Toolkit and open the <b>PrimeNumbers.msgflow</b> and run it in the Flow Exerciser with an empty message."
                   },
                   {
                     "details": "Goto your web browser and refresh the dashboard to see the usage data. Depending on the options used in the registation step, it might take a few minutes for the data to be update."
