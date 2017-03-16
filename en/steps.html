@@ -43,7 +43,7 @@
 	</div>
 	<div class="row">
 	  <div class="small-9 medium-9 large-9 columns">
-	    <h4 class="title">IBM Cloud Product Insights Registration and Monitoring <action><button class="small radius button" tabindex="0" id="stepsViewDetails" onclick="viewDetails()"> View Details</button> </action></h4>
+	    <h4 class="title">Using Bluemix Product Insights to view IBM Integration Bus Startup and Usage <action><button class="small radius button" tabindex="0" id="stepsViewDetails" onclick="viewDetails()"> View Details</button> </action></h4>
 	  </div>
 	  <div class="small-3 medium-3 large-3 columns">
 		<a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm')" class="small right helplink">IBM Knowledge Center</a> 
@@ -52,7 +52,7 @@
 	<hr>
 	<div class="row">
 		<div class="small-10 medium-10 large-10 columns">
-		<h5> Learn how to register and monitor IBM Integration Bus usages with IBM Cloud Product Insights service. </h5>
+		<h5> Learn how to use the Product Insights service on Bluemix to get a centralized view of IBM Integration Bus Startup and Usage. </h5>
 		</div>
 		<div class="small-2 medium-2 large-2 columns">
 			<button class="small radius button right" tabindex="0" id="backToGallery" onclick="backToGallery()"> Back To Gallery
@@ -79,13 +79,13 @@
 		    		<div class="small-10 medium-10 large-10 columns divider">
 					
 				      	<div class="row content-details">
-					      	<h4>Import projects</h4>
+					      	<h4>Import an example Application which will generate load on IBM Integration Bus</h4>
 					        
 						    
-								<p> When you click Import, the <b>PrimeNumbers</b> application will be created in you workspace. </p>
+								<p> When you click Import, the <b>PrimeNumbers</b> application, which contains a message flow of the same name, will be created in your workspace. </p>
 								
 							
-								<p> <b>PrimNumbers</b> uses the Compute node to look for all the prime numbers between 0 and 100000. This will be use as a way to create some data for the Product Insights service dashboard to show. </p>
+								<p> Later in this tutorial, you will send an HTTP request message into this message flow using the Flow Exerciser, and the same data will be immediately echoed back to you. However, the flow will continue to execute a while loop in the Compute node after this reply has been sent.  This logic will search for all the prime numbers between 0 and 100000, just as an easy means of making the message flow use CPU on your machine for a few minutes.  This will create some data which will make the graphs shown in the Product Insights service dashboard a bit more interesting! </p>
 								
 							
 						</div>
@@ -105,18 +105,89 @@
 					<div class="small-12 medium-12 large-12 columns">
 					
 						<div class="row content-details">
-						  	<h4>Getting an API host and API key</h4>
+						  	<h4></h4>
 						    
 						    
-								<p> Before you can register your integration server with the Product Insights service you will need to have an API host and API key for you Product Insights service. </p>
+								<p> <h4>Create an instance of the IBM Cloud Product Insights Service in Bluemix</h4> </p>
+								
+								
+									
+									<ol>
+									
+									
+										<li> Log in to Bluemix and go to the Catalog section
+										
+										</li>
+									
+										<li> In the Integrate section, click the Cloud Product Insights tile. The service details page is displayed, showing details of the free service. Default names are supplied, which you can change if you want to.
+										
+										</li>
+									
+										<li> Click <b>Create</b> and your service is now available.
+										
+										</li>
+									
+										<li> Click the <b>Service Credentials</b> tab. The list of credentials for your products is displayed.
+										
+										</li>
+									
+										<li> Click <b>View Credentials</b> for your new service, to show the API host and the API key that will be used for the connection to your IBM Integration Bus integration servers.
+										
+										</li>
+									
+									
+									</ol>
+									
 								
 							
-								<p> If you already have one then you can move on to the <b>Run</b> section. </p>
+								<p> <h4>Configure your IBM Integration Bus integration server</h4> </p>
+								
+								
+									
+									<ol>
+									
+									
+										<li> Open the IBM Integration Console window and type the following commands:
+										
+										
+											
+											<ol>
+											
+												
+													<li> <code>mqsistop <b>TESTNODE_userid</b></code> where <b>TESTNODE_userid</b> is the IIB node name</li>
+												
+													<li> <code>mqsichangebluemixreporting <b>TESTNODE_userid</b> -e <b>default</b> -c active -j <b>https://productinsights-api.ng.bluemix.net</b> -m <b>10</b> -k <b>ag282f6-6jki-4984-8892-7356e196k0l7</b></code><br>where<br><b>default</b> is the name of your integration server<br><b>https://productinsights-api.ng.bluemix.net</b> is the API host taken from the credentials section of the service<br><b>10</b> is the interval in minutes between submissions to Bluemix<br><b>ag282f6-6jki-4984-8892-7356e196k0l7</b> is the API key taken from the credentials section of the service</li>
+												
+													<li> <code>mqsistart <b>TESTNODE_userid</b></code> where <b>TESTNODE_userid</b> is the IIB node name</li>
+												
+											
+											</ol>
+											
+										
+										</li>
+									
+									
+									</ol>
+									
 								
 							
-								<p> You can follow the instruction in <b>Configuring the IBM Cloud Product Insights service</b> of the IBM Knowledge Center to get the API host and API key. </p>
-								
+						</div>
+						
+						<div class="row content-details">
+							<h4>Find out more</h4>
+							<ul>
 							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/bz91140_')" title="Knowledge Center link to Configuring the IBM Cloud Product Insights service">Configuring the IBM Cloud Product Insights service</a> </li>
+							   	
+							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/https://developer.ibm.com/product-insights/')" title="Knowledge Center link to IBM Cloud Product Insights service documentation">IBM Cloud Product Insights service documentation</a> </li>
+							   	
+							
+							</ul>
 						</div>
 							
 					</div>
@@ -137,11 +208,23 @@
 									<ol>
 									
 									
-										<li> Open an IBM Integration Console and use the command mqsichangebluemixreporting to register you integration server. Instruction can be find in <b>Configuring an integration server to send startup and usage information to IBM Cloud Product Insights</b> of the IBM Knowledge Center.
+										<li> Open the <b>PrimeNumbers</b> message flow and click the Flow Exerciser icon <img src="http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png" alt> to start testing the flow. If your Toolkit is connected to multiple servers, you may be asked which one you would like to use. Select an Integration Server under the node which you prepared with the <code>mqsichangebluemixreporting</code> command earlier.
 										
 										</li>
 									
-										<li> After registration, goto your web browser to logon to your IBM Bluemix account to open the Integrate services dashboard and select the Integrate Service you just created.
+										<li> Click the Send Message icon <img src="http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png" alt>, and choose the provided <b>ExampleInput</b> and click Send.
+										
+										</li>
+									
+										<li> You should receive an HTTP reply immediately, but the flow will continue to work for a few minutes (you will see this if you check the CPU being used on your machine).
+										
+										</li>
+									
+										<li> IBM Integration Bus has been configured to send usage data to Product Insights every 10 minutes, so you will need to wait a while for data to appear in the service.
+										
+										</li>
+									
+										<li> From a web browser logon to your IBM Bluemix account, navigate to the Product Insights service which you created and select the <b>Manage</b> section.
 										
 										</li>
 									
@@ -149,27 +232,15 @@
 										
 										</li>
 									
-										<li> If you registered in a group then your integration node with be a member of that group, expand the group.
+										<li> If you registered your server in a group then your integration node will be dispayed as a member of that group, which you should expand now.
 										
 										</li>
 									
-										<li> Select your integration node in the left column and in the center column select your integration server. The right-hand column will show the usage data for the selected integration server.
+										<li> Select your integration node in the left column and in the center column select your integration server. The right column will show the usage data for the selected integration server.
 										
 										</li>
 									
-										<li> On the right-hand column, if <b>Usage</b> is not selected, select it.
-										
-										</li>
-									
-										<li> Under <b>Usage</b> the chart can select to show one of three measurements. <b>CPU time</b> shows the CPU usage time by the selected server (in milli-seconds). <b>Number of active CPUs</b> shows the number of active CPUs available for use. <b> Resident set size</b> shows the maximum recorded memory usage.
-										
-										</li>
-									
-										<li> Goto your IBM Integration Toolkit and open the <b>PrimeNumbers.msgflow</b> and run it in the Flow Exerciser with an empty message.
-										
-										</li>
-									
-										<li> Goto your web browser and refresh the dashboard to see the usage data. Depending on the options used in the registation step, it might take a few minutes for the data to be update.
+										<li> You can select the <b>Usage</b> section and the chart can be used to show one of three measurements. <b>CPU time</b> shows the CPU usage time by the selected server (in milli-seconds). <b>Number of active CPUs</b> shows the number of active CPUs available for use. <b> Resident set size</b> shows the maximum recorded memory usage.
 										
 										</li>
 									
@@ -178,7 +249,7 @@
 									
 								
 							
-								<p> This tutorial has shown how to register and monitor the usage of IBM Integration Bus with Hybrid Connect service. </p>
+								<p> This tutorial has shown how to register and monitor the usage of IBM Integration Bus with the Product Insights service in Bluemix. </p>
 								
 							
 						</div>
@@ -199,13 +270,6 @@
 					
 					<div class="small-2 medium-2 large-2 columns">
 					
-					
-					
-					<h4 class="tkaction"><a href="javascript:;" onclick="deployArtifacts()"> Deploy <img class="icon-image" src="http://ot4i.github.io/iib-tutorials/images/icons/ibmdesign/back-right-previous_128-orange.png"></a></h4>
-				    
-					
-					
-					<hr>
 					
 					
 					
