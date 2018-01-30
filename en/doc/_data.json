@@ -1,0 +1,284 @@
+{
+  "version": "0.6",
+  "pageContent": 
+  {
+    "_comments": "JSON object that contains data for page labels, buttons, etc.",
+    "navItems": 
+    {
+      "_common": 
+      {
+        "buttonBackToGallery": 
+        {
+          "name": "Back To Gallery",
+          "method": "backToGallery()",
+          "idName": "backToGallery"  
+        },
+        "buttonStartTutorial": 
+        {
+          "name": "Start Tutorial",
+          "method": "startTutorialFromDetailsScreen()",
+          "idName": "startTutorial"
+        },
+        "buttonViewDetails": 
+        {
+          "name": "View Details",
+          "method": "viewDetails()",
+          "idName": "stepsViewDetails"  
+        }
+      }
+    }
+  },
+  "tutorial": 
+  {
+    "_common": 
+    {
+      "name": "Using Bluemix Product Insights to view IBM Integration Bus Startup and Usage",
+      "shortDescription": "Learn how to use the Product Insights service on Bluemix to get a centralized view of IBM Integration Bus Startup and Usage.",
+      "durationText": "This tutorial takes approximately",
+      "durationTime": "10 minutes",
+      "_resourceToOpenComment": "The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
+      "resourceToOpen": "MainFlow",
+      "helpLink": 
+      {
+        "text": "IBM Knowledge Center",
+        "link": "/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm"
+      }
+    },
+    "pageDetails": 
+    {
+      "topicsName": "Tutorial Topics",
+      "_topicListComment": "A short list of product concepts or tasks demonstrated by this tutorial",
+      "topicList": 
+      [
+        {
+          "title": "Register IIB with IBM Cloud Product Insights"
+        }
+      ],
+      "outcomesName": "Learning outcomes",
+      "_outcomesComment": "A description of what the user will have learned or accomplished by running this tutorial.",
+      "outcomeList": 
+      [
+        {
+          "title": "Configuring an integration server to send startup and usage information to IBM Cloud Product Insights in IBM Bluemmix"
+        }
+      ],
+      "summary": 
+      {
+        "overviewName": "OVERVIEW",
+        "_overviewComment": "A short description of what happens in this tutorial, and an optional short explanation of the IIB concepts used in this tutorial if necessary for context. What background knowledge must the user have for this to make sense?",
+        "sections": 
+        [
+          {
+            "section": "This tutorial demonstrates how to register IBM Integration Bus integration servers with the Product Insights service in IBM Bluemix. This service gathers product information from configured on-premise software products so that users can view deployment information about multiple products in a single centralized dashobard. You can also group instances together and view aggregated runtime usage data. For example, you can group IBM Integration Bus integration servers based on whether they are used for test, staging, or production."
+          }
+        ]
+      },
+      "helpLinks": 
+      {
+        "_helpLinksComment": "Helplinks that have a type:web attribute are rendered as web links. Otherwise, links are assumed to be to embedded Help topics in the Knowledge Center.",
+        "title": "Find out more",
+        "details": 
+        [
+          {
+            "title": "Knowledge Center link to ",
+            "description": "IBM Cloud Product Insights overview",
+            "link": "com.ibm.etools.mft.doc/bz91130_.htm",
+            "type": "help"
+          },
+          {
+            "title": "Knowledge Center link to ",
+            "description": "Configuring an integration server to send startup and usage information to IBM Cloud Product Insights",
+            "link": "com.ibm.etools.mft.doc/bz91160_.htm",
+            "type": "help"
+          }
+        ]
+      }
+    },
+    "pageSteps": 
+    {
+      "create": 
+      {
+        "overview": 
+        {
+          "name": "Create",
+          "heading": "Import an example Application which will generate load on IBM Integration Bus",
+          "_createComment": "A description of what will happen when the user clicks Import.",
+          "sections": 
+          [
+            {
+              "section": "When you click Import, the <b>PrimeNumbers</b> application, which contains a message flow of the same name, will be created in your workspace."
+            },
+            {
+              "section": "Later in this tutorial, you will send an HTTP request message into this message flow using the Flow Exerciser, and the same data will be immediately echoed back to you. However, the flow will continue to execute a while loop in the Compute node after this reply has been sent.  This logic will search for all the prime numbers between 0 and 100000, just as an easy means of making the message flow use CPU on your machine for a few minutes.  This will create some data which will make the graphs shown in the Product Insights service dashboard a bit more interesting!"
+            }
+          ]
+        },
+        "actions": 
+        {
+          "title": "Create Actions",
+          "details": 
+          [
+            {
+              "name": "Import",
+              "method": "importArtifacts()"
+            }
+          ]
+        }
+      },
+      "prepare": 
+      {
+        "overview": 
+        {
+          "name": "Prepare",
+          "heading": "",
+          "_prepareComment": "A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
+          "sections": 
+          [
+            {
+              "section":"<h4>Create an instance of the IBM Cloud Product Insights Service in Bluemix</h4>",
+              "steps":{
+                        "type":"ordered",
+                        "details":[
+                           {
+                              "details":"Log in to Bluemix and go to the Catalog section"
+                           },
+                           {
+                                "details":"In the Integrate section, click the Cloud Product Insights tile. The service details page is displayed, showing details of the free service. Default names are supplied, which you can change if you want to."
+                           },
+                           {
+                                "details":"Click <b>Create</b> and your service is now available."
+                           },
+                            {
+                                "details":"Click the <b>Service Credentials</b> tab. The list of credentials for your products is displayed."
+                            },
+                            {
+                                "details":"Click <b>View Credentials</b> for your new service, to show the API host and the API key that will be used for the connection to your IBM Integration Bus integration servers."
+                            }
+                        ]
+              }
+            },
+            {
+             "section":"<h4>Configure your IBM Integration Bus integration server</h4>",
+              "steps":{
+                        "type":"ordered",
+                        "details":[
+                            {
+                                "details":"Open the IBM Integration Console window and type the following commands:",
+                                "substeps":{
+                                 "type":"ordered",
+                                 "details":[
+                                    {
+                                       "details":"<code>mqsistop <b>TESTNODE_userid</b></code> where <b>TESTNODE_userid</b> is the IIB node name"
+                                    },                                    
+                                    {
+                                       "details":"<code>mqsichangebluemixreporting <b>TESTNODE_userid</b> -e <b>default</b> -c active -j <b>https://productinsights-api.ng.bluemix.net</b> -m <b>10</b> -k <b>ag282f6-6jki-4984-8892-7356e196k0l7</b></code><br>where<br><b>default</b> is the name of your integration server<br><b>https://productinsights-api.ng.bluemix.net</b> is the API host taken from the credentials section of the service<br><b>10</b> is the interval in minutes between submissions to Bluemix<br><b>ag282f6-6jki-4984-8892-7356e196k0l7</b> is the API key taken from the credentials section of the service"
+                                    },
+                                    {
+                                       "details":"<code>mqsistart <b>TESTNODE_userid</b></code> where <b>TESTNODE_userid</b> is the IIB node name"
+                                    }
+                                 ]
+                                }
+                           }
+                        ]
+                }
+            }
+          ]
+        }, 
+        "helpLinks": 
+        {
+          "title": "Find out more",
+          "details": 
+          [
+            {
+              "title": "Knowledge Center link to ",
+              "description": "Configuring the IBM Cloud Product Insights service",
+              "link": "com.ibm.etools.mft.doc/bz91140_"
+            },
+            {
+              "title": "Knowledge Center link to ",
+              "description": "IBM Cloud Product Insights service documentation",
+              "link": "https://developer.ibm.com/product-insights/"
+            }
+            
+          ]
+        }
+    },
+      "run": 
+      {
+        "overview": 
+        {
+          "name": "Run",
+          "heading": "Follow these steps to complete the tutorial",
+          "_runComment": "The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
+          "sections": 
+          [
+            {
+              "section": "Follow the instruction to register IBM Integration Bus with Product Insights service.",
+              "steps": 
+              {
+                "type": "ordered",
+                "details": 
+                [
+                  {
+                    "details": "Open the <b>PrimeNumbers</b> message flow and click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png' alt='' /> to start testing the flow. If your Toolkit is connected to multiple servers, you may be asked which one you would like to use. Select an Integration Server under the node which you prepared with the <code>mqsichangebluemixreporting</code> command earlier."
+                  },
+                  {
+                    "details": "Click the Send Message icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png' alt='' />, and choose the provided <b>ExampleInput</b> and click Send."
+                  },
+                  {
+                    "details": "You should receive an HTTP reply immediately, but the flow will continue to work for a few minutes (you will see this if you check the CPU being used on your machine)."
+                  },
+                  {
+                    "details": "IBM Integration Bus has been configured to send usage data to Product Insights every 10 minutes, so you will need to wait a while for data to appear in the service."
+                  },
+                  {
+                    "details": "From a web browser logon to your IBM Bluemix account, navigate to the Product Insights service which you created and select the <b>Manage</b> section."
+                  },
+                  {
+                    "details": "In the dashboard, select the IBM Integration Bus."
+                  },
+                  {
+                    "details": "If you registered your server in a group then your integration node will be dispayed as a member of that group, which you should expand now."
+                  },
+                  {
+                    "details": "Select your integration node in the left column and in the center column select your integration server. The right column will show the usage data for the selected integration server."
+                  },
+                  {
+                    "details": "You can select the <b>Usage</b> section and the chart can be used to show one of three measurements. <b>CPU time</b> shows the CPU usage time by the selected server (in milli-seconds). <b>Number of active CPUs</b> shows the number of active CPUs available for use. <b> Resident set size</b> shows the maximum recorded memory usage."
+                  }
+                ]
+              }
+            },
+            {
+              "section": "This tutorial has shown how to register and monitor the usage of IBM Integration Bus with the Product Insights service in Bluemix."
+            }
+          ]
+        },
+        "helpLinks": 
+        {
+          "title": "Find out more",
+          "details": 
+          [
+            {
+              "title": "Knowledge Center link to ",
+              "description": "Testing your message flow by using the Flow exerciser",
+              "link": "com.ibm.etools.mft.doc/rt26110_.htm"
+            }
+          ]
+        },
+        "exits": 
+        {
+          "title": "Run Exits",
+          "details": 
+          [
+            {
+              "name": "Clean Up",
+              "description": "Clean up and remove any changes in your workspace made by the tutorial.",
+              "method": "cleanUp()"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
